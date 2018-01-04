@@ -21,6 +21,7 @@ from article.feeds import AllPostsRssFeed
 
 urlpatterns = [
     # url(r'^$', views.index, name='index'),
+    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'', include('article.urls')),
     url(r'', include('comments.urls')),

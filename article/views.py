@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import markdown
+# import markdown
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
@@ -13,10 +13,11 @@ from comments.forms import CommentForm
 #                   })
 
 from django.utils.text import slugify
-from markdown.extensions.toc import TocExtension
+# from markdown.extensions.toc import TocExtension
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
 from django.db.models import Q
+
 
 class IndexView(ListView):
     model = Article
@@ -56,7 +57,6 @@ class IndexView(ListView):
         # 将更新后的 context 返回，以便 ListView 使用这个字典中的模板变量去渲染模板。
         # 注意此时 context 字典中已有了显示分页导航条所需的数据。
         return context
-
 
     def pagination_data(self, paginator, page, is_paginated):
         if not is_paginated:
@@ -167,12 +167,12 @@ def detail(request, pk):
     # 浏览量加1
     article.increase_views()
 
-    article.body = markdown.markdown(article.body,
-                                  extensions=[
-                                      'markdown.extensions.extra',
-                                      'markdown.extensions.codehilite',
-                                      'markdown.extensions.toc',
-                                  ])
+    # article.body = markdown.markdown(article.body,
+    #                               extensions=[
+    #                                   'markdown.extensions.extra',
+    #                                   'markdown.extensions.codehilite',
+    #                                   'markdown.extensions.toc',
+    #                               ])
     # 记得在顶部导入 CommentForm
     form = CommentForm()
     # 获取这篇 post 下的全部评论
@@ -196,20 +196,21 @@ class ArticleDetailView(DetailView):
         self.object.increase_views()
         return response
 
-    def get_object(self, queryset=None):
-        # 覆写 get_object 方法的目的是因为需要对 post 的 body 值进行渲染
-        article = super(ArticleDetailView, self).get_object(queryset)
-        md = markdown.Markdown(extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-            # 'markdown.extensions.toc',
-            # TocExtension(configs=[('slugify', slugify)]),
-            TocExtension(slugify=slugify),
-        ])
-
-        article.body = md.convert(article.body)
-        article.toc = md.toc
-        return article
+    # def get_object(self, queryset=None):
+    #     # 覆写 get_object 方法的目的是因为需要对 post 的 body 值进行渲染
+    #     article = super(ArticleDetailView, self).get_object(queryset)
+    #     # md = markdown.Markdown(extensions=[
+    #     #     'markdown.extensions.extra',
+    #     #     'markdown.extensions.codehilite',
+    #     #     # 'markdown.extensions.toc',
+    #     #     # TocExtension(configs=[('slugify', slugify)]),
+    #     #     TocExtension(slugify=slugify),
+    #     # ])
+    #     #
+    #     # # article.body = md.convert(article.body)
+    #     # md.convert(article.body)
+    #     # article.toc = md.toc
+    #     return article
 
     def get_context_data(self, **kwargs):
         # 覆写 get_context_data 的目的是因为除了将 post 传递给模板外（DetailView 已经帮我们完成），

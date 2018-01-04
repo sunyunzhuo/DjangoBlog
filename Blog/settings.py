@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mu95ul$*y-h=vo!6f=c@4v=6i9@d)4@5m7o=8&1)a*hz_1p5ek'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.bigpandas.tech']
 
@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'DjangoUeditor',
+    # 'ckeditor',
+    # 'ckeditor_uploader',
+    'django_summernote',
+
     'article',
     'comments',
 ]
@@ -135,6 +140,26 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# QINIU_ACCESS_KEY = 'C0uFIAmihzToE5jaN5NllvAHzW3VzypgbYQnDHSm'
+# QINIU_SECRET_KEY = '4TG9wl5_om3xjWjw0fmMGSW5qRUNfSPmDIa6jkji'
+# QINIU_BUCKET_NAME = 'bigpandas'
+# QINIU_BUCKET_DOMAIN = 'p1zcuhmdf.bkt.clouddn.com'
+# QINIU_SECURE_URL = False
+# PREFIX_URL = 'http://'
+#
+# MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
+#
+# STATIC_URL = QINIU_BUCKET_DOMAIN + '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_STORAGE = 'qiniustorage.backends.QiniuStaticStorage'
 STATIC_URL = '/static/'
 # 加入下面的配置
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# CKEDITOR_UPLOAD_PATH = "uploads/"
+# CKEDITOR_IMAGE_BACKEND = "pillow"
+# CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'

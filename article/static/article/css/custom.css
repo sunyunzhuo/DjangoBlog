@@ -60,7 +60,7 @@ a:hover, a:focus {
 
 body {
     color: #444;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 p {
@@ -215,7 +215,7 @@ img {
 
 .post {
     background: #fff;
-    padding: 30px 30px 0;
+    padding: 0px 30px 0;
 }
 
 .entry-title {
@@ -223,7 +223,7 @@ img {
     font-size: 1.9em;
     margin-bottom: 20px;
     line-height: 1.6;
-    padding: 10px 20px 0;
+    padding: 0px 20px 0;
 }
 
 .entry-meta {
